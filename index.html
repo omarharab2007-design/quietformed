@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Quietform: Websites in 48 hours</title>
-<meta name="description" content="Custom websites for UAE businesses. Free demo in 48 hours. Only pay if you love it.">
+<meta name="description" content="Custom websites for any business, anywhere. Free demo in 48 hours. Only pay if you love it.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -153,14 +153,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <span class="tag rv"><i></i>Taking new UAE businesses this week</span>
+  <span class="tag rv"><i></i>Taking new businesses this week</span>
   <h1 class="rv">Your website, <em>live in 48 hours.</em></h1>
   <p class="rv">We build your custom site first. You see it on your phone. You only pay if you love it.</p>
   <div class="ctas rv">
     <a class="btn" href="#start">Get my free demo →</a>
     <a class="btn ghost" href="#work">See our work</a>
   </div>
-  <p class="proof rv">No payment upfront · <b>From $549</b> · Built for restaurants, clinics, gyms &amp; salons</p>
+  <p class="proof rv">No payment upfront · <b>From $549</b> · Built for restaurants, clinics, gyms, salons &amp; more</p>
 </div></header>
 
 <div class="marquee" id="work"><div class="track" id="track"></div></div>
@@ -208,7 +208,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="head rv"><h2>Questions</h2></div>
   <div class="faq rv">
     <details><summary>Is the demo really free?</summary><p>Yes. We build your real site and send you a private link. If you don't love it, you walk away and owe nothing.</p></details>
-    <details><summary>How can you build it in 48 hours?</summary><p>We've built a library of tested, fast designs for restaurants, clinics, gyms and salons. We tailor one to your brand, photos and services instead of starting from a blank page.</p></details>
+    <details><summary>How can you build it in 48 hours?</summary><p>We've built a library of tested, fast designs for restaurants, clinics, gyms, salons and more. We tailor one to your brand, photos and services instead of starting from a blank page.</p></details>
     <details><summary>Do I own my domain?</summary><p>Yes. The domain is registered in your name. The first year is included in the setup price.</p></details>
     <details><summary>What if I need changes later?</summary><p>On the care plan, just DM us on Instagram. Up to 2 changes a month are included, like new prices, offers, photos or opening hours.</p></details>
     <details><summary>Can you do Arabic?</summary><p>Yes, a full Arabic version (right-to-left) is available as an add-on.</p></details>
@@ -231,7 +231,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       <div class="row">
         <label>Type<select name="type" required>
           <option value="">Choose one</option><option>Restaurant / café</option><option>Clinic / dental</option><option>Gym / studio</option><option>Salon / spa</option><option>Real estate</option><option>Other</option></select></label>
-        <label>Area<input name="area" placeholder="Jumeirah, Dubai"></label>
+        <label>Location<input name="area" placeholder="City, country"></label>
       </div>
       <label>What do you sell? (main services)<textarea name="what" required placeholder="Breakfast & specialty coffee, catering for offices…"></textarea></label>
       <label>A website you like the look of (optional)<input name="ref" placeholder="any link"></label>
@@ -242,7 +242,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 </div></section>
 
 <footer><div class="wrap">
-  <span>© <span id="y"></span> Quietform · Websites for UAE businesses</span>
+  <span>© <span id="y"></span> Quietform · Websites for businesses everywhere</span>
   <a href="#" id="iglink">Instagram</a>
 </div></footer>
 
@@ -268,7 +268,7 @@ document.querySelectorAll('.rv').forEach(el => io.observe(el));
 document.getElementById('f').addEventListener('submit', async e => {
   e.preventDefault();
   const d = Object.fromEntries(new FormData(e.target));
-  const msg = `Hi! I'd like my free website demo 🙌\n\nBusiness: ${d.name}\nInstagram: ${d.ig}\nType: ${d.type}\nArea: ${d.area || '-'}\nWhat we sell: ${d.what}\nSite I like: ${d.ref || '-'}`;
+  const msg = `Hi! I'd like my free website demo 🙌\n\nBusiness: ${d.name}\nInstagram: ${d.ig}\nType: ${d.type}\nLocation: ${d.area || '-'}\nWhat we sell: ${d.what}\nSite I like: ${d.ref || '-'}`;
   let copied = false;
   try { await navigator.clipboard.writeText(msg); copied = true; } catch (_) {}
   const ok = document.getElementById('ok');
