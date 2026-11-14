@@ -638,11 +638,14 @@ $$('[data-href]').forEach(el => el.addEventListener('click', () => window.open(e
   const setW = t => rot.style.width = Math.ceil(w(t)) + 2 + 'px';
   document.fonts.ready.then(() => setW(ROT[0]));
   setW(ROT[0]);
-  if (RM) return;
+  // always rotate (phones with Reduce Motion get a gentle fade instead of the slide)
   setInterval(() => {
     const old = rot.firstElementChild; i = (i + 1) % ROT.length;
     const nu = document.createElement('span'); nu.textContent = ROT[i]; rot.appendChild(nu); setW(ROT[i]);
-    if (window.gsap) {
+    if (window.gsap && RM) {
+      gsap.fromTo(nu, { opacity: 0 }, { opacity: 1, duration: .5 });
+      gsap.to(old, { opacity: 0, duration: .3, onComplete: () => old.remove() });
+    } else if (window.gsap) {
       gsap.fromTo(nu, { yPercent: 110, rotate: 6 }, { yPercent: 0, rotate: 0, duration: .8, ease: 'expo.out' });
       gsap.to(old, { yPercent: -110, rotate: -6, duration: .6, ease: 'expo.in', onComplete: () => old.remove() });
     } else old.remove();
