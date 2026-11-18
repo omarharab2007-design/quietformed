@@ -215,6 +215,7 @@ h2 em{color:var(--acc)}
 
 /* before / after */
 .ba{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/8.4;border:1px solid var(--line);user-select:none;touch-action:pan-y;--x:50%}
+.ba:focus-visible{outline:3px solid var(--accInk);outline-offset:4px}
 .ba .after{position:absolute;inset:0}
 .ba .after video,.ba .after img{width:100%;height:100%;object-fit:cover}
 .ba .before{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--x)) 0 0);background:#ffffcc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 0h20v20H0zM20 20h20v20H20z' fill='%23ffff99'/%3E%3C/svg%3E");color:#000;font-family:'Times New Roman',Times,serif;padding:3% 4%;overflow:hidden}
@@ -378,10 +379,10 @@ footer a:hover{color:var(--acc)}
 
 <header class="hero" id="top">
   <canvas id="field" aria-hidden="true"></canvas>
-  <div class="float f1" data-d="1.4"><div class="bar"><i></i><i></i><i></i></div><img src="sumac.jpg" alt=""></div>
-  <div class="float f2" data-d="1"><div class="bar"><i></i><i></i><i></i></div><img src="kiln.jpg" alt=""></div>
-  <div class="float f3" data-d=".7"><div class="bar"><i></i><i></i><i></i></div><img src="pivot.jpg" alt=""></div>
-  <div class="float f4" data-d="1.8"><div class="bar"><i></i><i></i><i></i></div><img src="shallows.jpg" alt=""></div>
+  <div class="float f1" data-d="1.4"><div class="bar"><i></i><i></i><i></i></div><img src="sumac.jpg" alt="" aria-hidden="true"></div>
+  <div class="float f2" data-d="1"><div class="bar"><i></i><i></i><i></i></div><img src="kiln.jpg" alt="" aria-hidden="true"></div>
+  <div class="float f3" data-d=".7"><div class="bar"><i></i><i></i><i></i></div><img src="pivot.jpg" alt="" aria-hidden="true"></div>
+  <div class="float f4" data-d="1.8"><div class="bar"><i></i><i></i><i></i></div><img src="shallows.jpg" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <span class="tag hx"><i></i>Taking new businesses this week</span>
     <h1 id="h1">Your website, <em>live in 48 hours.</em></h1>
@@ -473,7 +474,7 @@ footer a:hover{color:var(--acc)}
 
 <section id="diff"><div class="wrap">
   <div class="head"><div><div class="eyebrow">The difference</div><h2 class="sp">Agency quality, <em>without the agency.</em></h2></div><p class="lead rv">Drag the handle. Left is what most small businesses have. Right is what we build.</p></div>
-  <div class="ba rv" id="ba" data-cursor="⟷ Drag">
+  <div class="ba rv" id="ba" data-cursor="⟷ Drag" tabindex="0" role="slider" aria-label="Before and after comparison. Use the left and right arrow keys to compare." aria-valuemin="2" aria-valuemax="98" aria-valuenow="50">
     <div class="after"><video muted playsinline loop preload="metadata" poster="sumac-desk.jpg" data-src="sumac-desk.mp4"></video></div>
     <div class="before">
       <div class="old">
@@ -568,7 +569,7 @@ footer a:hover{color:var(--acc)}
   <div class="bigword" id="bigword" aria-hidden="true"></div>
   <div class="wrap">
     <span>© <span id="y"></span> Quietform · Websites for businesses everywhere</span>
-    <span><a href="#" id="iglink">Instagram</a> &nbsp;·&nbsp; <a href="#top">Back to top ↑</a></span>
+    <span><a href="#" id="iglink">Instagram</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="#top">Back to top ↑</a></span>
   </div>
 </footer>
 
@@ -742,6 +743,9 @@ $$('.plan').forEach(p => p.addEventListener('pointermove', e => { const r = p.ge
   ba.addEventListener('pointermove', e => { if (drag || FINE) set(e.clientX); });
   ba.addEventListener('pointerup', () => drag = false);
   ba.addEventListener('pointercancel', () => drag = false);
+  // keyboard: arrows move the divider, Home/End jump to either side
+  ba.addEventListener('keydown', e => { const k = { ArrowLeft: -5, ArrowRight: 5, ArrowDown: -5, ArrowUp: 5, Home: -100, End: 100 }[e.key]; if (k === undefined) return; e.preventDefault();
+    const v = Math.max(2, Math.min(98, (parseFloat(ba.style.getPropertyValue('--x')) || 50) + k)); ba.style.setProperty('--x', v + '%'); ba.setAttribute('aria-valuenow', Math.round(v)); });
 })();
 
 // ---- pricing toggle
